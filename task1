@@ -1,0 +1,191 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace The_Character_Program
+{
+    /*
+ Name Katherine Harper
+   by  92018448
+     * 
+**** Welcome to FPS Extreme **** 
+The Characters in this game are: 
+DeanKeaton, Type: TeamMember, Health: 15, WeaponEffect: 4, GameCredit: 5 
+KeizerSoze, Type: Enemy, Health: 100, WeaponEffect: 2, GameCredit: 15 
+ToddHockney, Type: TeamMember, Health: 25, WeaponEffect: 2, GameCredit: 10 
+EdieFinneran, Type: Civilian, Health: 90, WeaponEffect: 0, GameCredit: 30
+     */
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<CharacterList> Character = new List<CharacterList>()
+            {
+                 new CharacterList {name = "DeanKeaton", TypeOfCharacter = TypeOfCharacter.TeamMember, Health = 15, WeaponEffect = 4, GameCredit = 5},
+                 new CharacterList {name = "KeizerSoze", TypeOfCharacter = TypeOfCharacter.Enemy, Health = 2, WeaponEffect = 2, GameCredit = 15},
+                 new CharacterList {name = "ToddHockney", TypeOfCharacter = TypeOfCharacter.TeamMember, Health = 25, WeaponEffect = 2, GameCredit = 10},
+                 new CharacterList {name = "EdieFinneran", TypeOfCharacter = TypeOfCharacter.Civilian, Health = 90, WeaponEffect = 0, GameCredit = 30}
+            };
+
+            Console.WriteLine("**** Welcome to FPS Extreme ****\n The Characters in this game are: \n");
+            printListNoChange(Character);
+            //Write in console and initiate method
+            Console.WriteLine();
+            Console.WriteLine("The new Character stats  decremented by one  are:");
+          
+
+       
+        
+        
+        // Show Decrement by one untill GameCredit at 0 
+            for (int i = 0; i < 6; i++)
+            {
+
+
+                SpendAllGameCredits(Character);
+                Console.WriteLine();
+            }
+            Console.Read();
+    }
+        private static void printListNoChange(List<CharacterList> Character)
+        {
+
+
+
+            foreach (var item in Character)
+            {
+                Console.WriteLine("{0}, Type: {1}, Health: {2}, Weapon Effect: {3},  GameCredit: {4}  "
+                     , item.name, item.TypeOfCharacter, item.Health, item.WeaponEffect, item.GameCredit); //.Description 
+            }
+        }
+
+        //If enemy spends a game credit: GameCredit -1
+        // Health + 1
+
+        // If TeamMember spends a game credit: GameCredit -1
+        //Health + 1
+        private static void SpendAllGameCredits(List<CharacterList> Character)
+        {
+
+
+
+            foreach (var item in Character)
+            {
+
+                switch (item.TypeOfCharacter)
+                {
+
+
+
+                    case TypeOfCharacter.TeamMember:
+                        item.GameCredit -= 1;
+                        item.WeaponEffect += 1;
+
+                        Console.ForegroundColor = ConsoleColor.Red;
+
+
+
+                        break;
+
+
+
+                    case TypeOfCharacter.Enemy:
+
+                        item.GameCredit -= 1;
+                        item.WeaponEffect += 1;
+
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+
+
+
+                        break;
+
+
+
+                    case TypeOfCharacter.Civilian:
+                        item.GameCredit -= 1;
+                        item.Health += 1;
+
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+
+
+
+                        break;
+
+
+
+
+
+
+
+                    default:
+
+
+
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+
+
+
+                        break;
+
+
+
+
+
+
+
+                }
+                //DeanKeaton, Type: TeamMember, Health: 15, WeaponEffect: 4, GameCredit: 5 
+                Console.WriteLine("{0}, Type: {1}, Health: {2}, Weapon Effect: {3},  GameCredit: {4}  "
+                    , item.name, item.TypeOfCharacter, item.Health, item.WeaponEffect, item.GameCredit); //.Description 
+            }
+        }
+
+
+        class CharacterList
+        {
+
+
+
+            public string name { get; set; }
+
+
+
+            public int Health { get; set; }
+
+            public int WeaponEffect { get; set; }
+
+            public int GameCredit { get; set; }
+
+
+            public TypeOfCharacter TypeOfCharacter { get; set; }
+
+
+
+        }
+        //enumeration
+        enum TypeOfCharacter
+        {
+
+
+
+            TeamMember,
+
+
+
+            Enemy,
+
+
+
+            Civilian
+
+
+
+        }
+
+    }
+}
+
+
